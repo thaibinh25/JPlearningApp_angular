@@ -3,6 +3,7 @@ import { Lesson } from '../models/lesson/lesson.model';
 import { StudyLessonResponse } from '../models/study/study-lesson-response.model';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { environment } from '../environment/environment';
 export interface LessonResponse {
   id: number;
   title: string;
@@ -15,7 +16,7 @@ export interface LessonResponse {
 })
 export class LessonService {
 
-  private baseUrl = 'http://localhost:8080/api';
+  private baseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 

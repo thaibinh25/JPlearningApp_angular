@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../environment/environment';
 
 export interface HandwritingRecognizeRequest {
   imageBase64: string;
@@ -18,7 +19,7 @@ export interface HandwritingRecognizeResponse {
   providedIn: 'root'
 })
 export class HandwritingService {
-  private apiUrl = 'http://localhost:8080/api/handwriting';
+  private apiUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +27,7 @@ export class HandwritingService {
     payload: HandwritingRecognizeRequest
   ): Observable<HandwritingRecognizeResponse> {
     return this.http.post<HandwritingRecognizeResponse>(
-      `${this.apiUrl}/recognize`,
+      `${this.apiUrl}/handwriting/recognize`,
       payload
     );
   }

@@ -58,12 +58,13 @@ import { SubmitPracticeRequest } from '../models/practice/submit-practice-reques
 import { SubmitPracticeResponse } from '../models/practice/submit-practice-response.model';
 import { PracticeHistoryItemResponse } from '../models/practice/practice-history-item.model';
 import { PracticeStartResponse } from '../models/practice/ practice-start-response.model';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PracticeService {
-  private readonly apiUrl = 'http://localhost:8080/api/practice-sessions';
+  private readonly apiUrl = `${environment.apiBaseUrl}/practice-sessions`;
 
   constructor(private http: HttpClient) {}
 

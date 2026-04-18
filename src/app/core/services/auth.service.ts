@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../environment/environment';
 
 export interface RegisterRequest {
   fullName: string;
@@ -42,7 +43,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiBaseUrl = 'http://localhost:8080/api';
+  private apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
