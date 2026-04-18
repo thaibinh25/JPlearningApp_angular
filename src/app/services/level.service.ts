@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LevelResponse } from '../models/level/level.model';
-import { environment } from '../environment/environment';
+import { environment } from '../environments/environment';
 
 
 @Injectable({
