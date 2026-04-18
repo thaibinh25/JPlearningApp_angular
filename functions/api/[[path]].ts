@@ -1,6 +1,5 @@
 export async function onRequest(context: any) {
   const { request, params } = context;
-
   const backendBase =
     'http://jplearning-backend-env.eba-zmn92mjm.ap-southeast-2.elasticbeanstalk.com';
 
