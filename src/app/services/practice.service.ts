@@ -58,7 +58,7 @@ import { SubmitPracticeRequest } from '../models/practice/submit-practice-reques
 import { SubmitPracticeResponse } from '../models/practice/submit-practice-response.model';
 import { PracticeHistoryItemResponse } from '../models/practice/practice-history-item.model';
 import { PracticeStartResponse } from '../models/practice/ practice-start-response.model';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

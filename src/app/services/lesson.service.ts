@@ -3,7 +3,7 @@ import { Lesson } from '../models/lesson/lesson.model';
 import { StudyLessonResponse } from '../models/study/study-lesson-response.model';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 export interface LessonResponse {
   id: number;
   title: string;
