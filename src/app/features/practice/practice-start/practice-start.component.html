@@ -1,0 +1,71 @@
+<div class="practice-start-container">
+    <div class="top-bar">
+        <button class="back-btn" (click)="goBack()">← Quay lại danh sách bài học</button>
+    </div>
+
+    <div class="start-hero">
+        <div class="hero-badge">Bắt đầu</div>
+        <h1>Bắt đầu luyện tập</h1>
+        <p class="subtitle">
+            Chọn chế độ luyện tập và cấu hình ẩn/hiện nội dung trước khi bắt đầu.
+        </p>
+    </div>
+
+    <div class="form-card">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>User ID</label>
+                <div class="display-field">{{ formData.userId }}</div>
+            </div>
+
+            <div class="form-group">
+                <label>Lesson ID</label>
+                <div class="display-field">{{ formData.lessonId }}</div>
+            </div>
+
+            <div class="form-group full">
+                <label>Mode</label>
+                <select [(ngModel)]="formData.mode">
+                    <option value="PRACTICE1">PRACTICE1</option>
+                    <option value="PRACTICE2">PRACTICE2</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="option-box">
+            <h3>Tùy chọn ẩn nội dung</h3>
+
+            <div class="checkbox-grid">
+                <label>
+                    <input type="checkbox" [(ngModel)]="formData.hiddenKanji" />
+                    Ẩn Kanji
+                </label>
+
+                <label>
+                    <input type="checkbox" [(ngModel)]="formData.hiddenKana" />
+                    Ẩn Kana
+                </label>
+
+                <label>
+                    <input type="checkbox" [(ngModel)]="formData.hiddenHanViet" />
+                    Ẩn Nghĩa Hán Việt
+                </label>
+
+                <label>
+                    <input type="checkbox" [(ngModel)]="formData.hiddenMeaningVi" />
+                    Ẩn Nghĩa Việt
+                </label>
+            </div>
+        </div>
+
+        <button class="start-btn" (click)="startPractice()" [disabled]="loading">
+            {{ loading ? 'Đang bắt đầu...' : 'Bắt đầu luyện tập' }}
+        </button>
+
+        <div class="error-box" *ngIf="errorMessage">
+            {{ errorMessage }}
+        </div>
+
+        <app-loading-spinner *ngIf="loading" message="Đang tạo phiên luyện tập..."></app-loading-spinner>
+    </div>
+</div>

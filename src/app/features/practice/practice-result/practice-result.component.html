@@ -1,0 +1,144 @@
+<div class="practice-result-container">
+    <div class="result-hero">
+        <div class="hero-badge">Kết quả</div>
+        <h1>Kết quả luyện tập</h1>
+        <p class="hero-subtitle">
+            Xem lại phần đúng, phần sai và tiếp tục luyện tập để cải thiện kết quả.
+        </p>
+    </div>
+
+    <app-loading-spinner *ngIf="loading" message="Đang tải kết quả..."></app-loading-spinner>
+
+    <div class="error-box" *ngIf="errorMessage">
+        {{ errorMessage }}
+    </div>
+
+    <ng-container *ngIf="result as data">
+        <div class="summary-grid">
+            <div class="summary-card session">
+                <span class="summary-label">Session ID</span>
+                <strong class="summary-value">{{ data.sessionId }}</strong>
+            </div>
+
+            <div class="summary-card">
+                <span class="summary-label">Số từ</span>
+                <strong class="summary-value">{{ data.summary.totalItems }}</strong>
+            </div>
+
+            <div class="summary-card correct">
+                <span class="summary-label">Đúng</span>
+                <strong class="summary-value">{{ data.summary.totalCorrect }}</strong>
+            </div>
+
+            <div class="summary-card wrong">
+                <span class="summary-label">Sai</span>
+                <strong class="summary-value">{{ data.summary.totalWrong }}</strong>
+            </div>
+
+            <div class="summary-card score">
+                <span class="summary-label">Điểm</span>
+                <strong class="summary-value">{{ data.summary.score }}</strong>
+            </div>
+        </div>
+
+        <div class="result-section">
+            <div class="section-header">
+                <h2>Chi tiết từng câu</h2>
+                <p>So sánh nhanh đáp án đúng với phần trả lời của bạn.</p>
+            </div>
+
+            <div class="result-list compact-result-list">
+                <div class="result-item compact-item" *ngFor="let item of data.results; let i = index">
+                    <div class="compact-item-header">
+                        <h3>Câu {{ i + 1 }}</h3>
+                    </div>
+
+                    <div class="compact-row correct-row">
+                        <div class="row-label">Đáp án</div>
+
+                        <div class="mini-chip">
+                        
+                            <span class="mini-value">{{ item.correctKanji || '—' }}</span>
+                        </div>
+
+                        <div class="mini-chip">
+                            
+                            <span class="mini-value">{{ item.correctKana || '—' }}</span>
+                        </div>
+
+                        <div class="mini-chip">
+                          
+                            <span class="mini-value">{{ item.correctHanViet || '—' }}</span>
+                        </div>
+
+                        <div class="mini-chip">
+                           
+                            <span class="mini-value">{{ item.correctMeaningVi || '—' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="compact-row user-row">
+                        <div class="row-label">Bạn làm</div>
+
+                        <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.kanji"
+                            [ngClass]="visibleUserFields.kanji ? getClass(item.kanjiCorrect) : ''">
+                            
+                            <span class="mini-value">
+                                {{ visibleUserFields.kanji ? (item.inputKanji || '—') : '' }}
+                            </span>
+                        </div>
+
+                        <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.kana"
+                            [ngClass]="visibleUserFields.kana ? getClass(item.kanaCorrect) : ''">
+                          
+                            <span class="mini-value">
+                                {{ visibleUserFields.kana ? (item.inputKana || '—') : '' }}
+                            </span>
+                        </div>
+
+                        <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.hanViet"
+                            [ngClass]="visibleUserFields.hanViet ? getClass(item.hanVietCorrect) : ''">
+                            
+                            <span class="mini-value">
+                                {{ visibleUserFields.hanViet ? (item.inputHanViet || '—') : '' }}
+                            </span>
+                        </div>
+
+                        <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.meaningVi"
+                            [ngClass]="visibleUserFields.meaningVi ? getClass(item.meaningViCorrect) : ''">
+                           
+                            <span class="mini-value">
+                                {{ visibleUserFields.meaningVi ? (item.inputMeaningVi || '—') : '' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-group">
+            <div class="action-row primary-row">
+                <button class="primary-btn" (click)="redoAll()" [disabled]="redoLoading">
+                    {{ redoLoading ? 'Đang tạo...' : 'Làm lại toàn bộ bài' }}
+                </button>
+
+                <button class="primary-btn alt-btn" (click)="retryWrong()" [disabled]="retryLoading">
+                    {{ retryLoading ? 'Đang tạo...' : 'Luyện lại câu sai' }}
+                </button>
+            </div>
+
+            <div class="error-box inline-error" *ngIf="redoError">
+                {{ redoError }}
+            </div>
+
+            <div class="error-box inline-error" *ngIf="retryError">
+                {{ retryError }}
+            </div>
+
+            <div class="action-row secondary-row">
+                <button class="secondary-btn" (click)="goToHistory()">Xem lịch sử</button>
+                <button class="ghost-btn" (click)="backToStart()">Làm bài mới</button>
+            </div>
+        </div>
+    </ng-container>
+</div>

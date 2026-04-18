@@ -1,0 +1,59 @@
+<div class="profile-page">
+  <div class="profile-card">
+    <div class="profile-header">
+      <h1>Thông tin cá nhân</h1>
+      <p>Quản lý thông tin tài khoản của bạn.</p>
+    </div>
+
+    <div *ngIf="loading" class="state-message">Đang tải dữ liệu...</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" *ngIf="!loading">
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label for="fullName">Họ và tên</label>
+          <input id="fullName" type="text" formControlName="fullName" />
+          <small class="field-error" *ngIf="fullName?.touched && fullName?.invalid">
+            Họ và tên là bắt buộc.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email" />
+          <small class="field-error" *ngIf="email?.touched && email?.invalid">
+            Email không hợp lệ.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Số điện thoại</label>
+          <input id="phoneNumber" type="text" formControlName="phoneNumber" />
+          <small class="field-error" *ngIf="phoneNumber?.touched && phoneNumber?.invalid">
+            Số điện thoại không hợp lệ.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="dateOfBirth">Ngày sinh</label>
+          <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+        </div>
+
+        <div class="form-group full-width">
+          <label for="address">Địa chỉ</label>
+          <textarea id="address" rows="4" formControlName="address"></textarea>
+          <small class="field-error" *ngIf="address?.touched && address?.invalid">
+            Địa chỉ quá dài.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="saving">
+          {{ saving ? 'Đang lưu...' : 'Lưu thay đổi' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

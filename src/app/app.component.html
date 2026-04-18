@@ -1,0 +1,13 @@
+<ng-container *ngIf="!hideLayout; else authLayout">
+  <app-header></app-header>
+
+  <main class="app-main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer></app-footer>
+</ng-container>
+
+<ng-template #authLayout>
+  <router-outlet></router-outlet>
+</ng-template>

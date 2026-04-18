@@ -1,0 +1,61 @@
+<header class="app-header">
+  <div class="header-container">
+    <div class="header-left">
+      <a routerLink="/practice/start" class="logo">
+        <div class="logo-icon">日</div>
+        <div class="logo-text">
+          <span class="title">JP Learning</span>
+          <span class="subtitle">Học tiếng Nhật mỗi ngày</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="header-nav">
+      <a routerLink="/practice/start" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Trang chủ
+      </a>
+
+      <a routerLink="/levels" routerLinkActive="active">
+        Cấp độ
+      </a>
+
+      <a routerLink="/lessons" routerLinkActive="active">
+        Bài học
+      </a>
+
+      <a routerLink="/practice/start" routerLinkActive="active">
+        Luyện tập
+      </a>
+
+      <a routerLink="/practice/history" routerLinkActive="active">
+        Lịch sử
+      </a>
+    </nav>
+
+    <div class="header-right">
+      <button class="continue-btn" (click)="goToContinueLearning()">
+        Tiếp tục học
+      </button>
+
+      <div class="user-menu-wrapper" (click)="toggleUserMenu($event)">
+        <div class="user-trigger">
+          <div class="avatar">
+            {{ getAvatarText() }}
+          </div>
+          <span class="user-name">{{ displayName }}</span>
+          <span class="arrow" [class.open]="isUserMenuOpen">▾</span>
+        </div>
+
+        <div class="user-dropdown" *ngIf="isUserMenuOpen" (click)="$event.stopPropagation()">
+          <button type="button" class="dropdown-item" (click)="goToProfile($event)">
+            Thông tin cá nhân
+          </button>
+
+          <button type="button" class="dropdown-item logout" (click)="logout($event)">
+            Đăng xuất
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

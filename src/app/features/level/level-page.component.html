@@ -1,0 +1,37 @@
+<div class="level-page">
+  <div class="level-hero">
+    <div class="hero-badge">Lộ trình học</div>
+    <h1>Chọn cấp độ học</h1>
+    <p class="subtitle">
+      Hãy chọn level phù hợp để bắt đầu học theo đúng trình độ và tiến dần lên từng bước.
+    </p>
+  </div>
+
+  <div *ngIf="loading" class="state-box loading">
+    Đang tải level...
+  </div>
+
+  <div *ngIf="errorMessage" class="state-box error">
+    {{ errorMessage }}
+  </div>
+
+  <div class="level-grid" *ngIf="!loading && levels.length > 0">
+    <div class="level-card" *ngFor="let level of levels" (click)="goToCourses(level)">
+      <div class="card-top">
+        <div class="level-icon">日</div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <h2>{{ level.name }}</h2>
+      <p>{{ level.description || 'Bắt đầu học các khóa thuộc cấp độ này' }}</p>
+
+      <div class="card-footer">
+        <span>Vào khóa học</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && levels.length === 0" class="state-box empty">
+    Chưa có level nào.
+  </div>
+</div>

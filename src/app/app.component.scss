@@ -1,0 +1,25 @@
+.app-main-content {
+  min-height: calc(100vh - 168px);
+  background:
+    radial-gradient(circle at top left, rgba(191, 219, 254, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(221, 214, 254, 0.18), transparent 24%),
+    linear-gradient(180deg, #f8fbff 0%, #f5f7fb 38%, #f7f8fc 100%);
+  position: relative;
+}
+
+.app-main-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.24;
+}
+
+.app-main-content > * {
+  position: relative;
+  z-index: 1;
+}   

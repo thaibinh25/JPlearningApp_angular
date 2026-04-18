@@ -1,0 +1,52 @@
+<div class="study-container">
+  <h1>Học bài</h1>
+
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+  <div class="error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="data && !loading">
+    <h2>{{ data.lessonTitle }}</h2>
+
+    <div class="controls">
+      <button (click)="showAll()">Hiện tất cả</button>
+      <button (click)="hideAll()">Ẩn tất cả</button>
+
+      <button (click)="showKanji = !showKanji">Kanji</button>
+      <button (click)="showKana = !showKana">Kana</button>
+      <button (click)="showHanViet = !showHanViet">Hán Việt</button>
+      <button (click)="showMeaningVi = !showMeaningVi">Nghĩa</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th *ngIf="showKanji">Kanji</th>
+            <th *ngIf="showKana">Kana</th>
+            <th *ngIf="showHanViet">Hán Việt</th>
+            <th *ngIf="showMeaningVi">Nghĩa</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of data.items; let i = index">
+            <td>{{ i + 1 }}</td>
+
+            <td *ngIf="showKanji">{{ item.kanji }}</td>
+            <td *ngIf="showKana">{{ item.kana }}</td>
+            <td *ngIf="showHanViet">{{ item.hanViet }}</td>
+            <td *ngIf="showMeaningVi">{{ item.meaningVi }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="actions">
+      <button (click)="goToPractice()">Chuyển sang luyện tập</button>
+    </div>
+  </div>
+</div>

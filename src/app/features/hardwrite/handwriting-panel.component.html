@@ -1,0 +1,45 @@
+<div class="handwriting-overlay">
+  <div class="handwriting-modal">
+    <div class="handwriting-header">
+      <div class="header-copy">
+        <h3>Viết tay để nhập đáp án</h3>
+        <p>Dừng bút khoảng 0.7 giây để hệ thống tự nhận diện.</p>
+      </div>
+
+      <button type="button" class="close-btn" (click)="closePanel()">✕</button>
+    </div>
+
+    <div class="handwriting-body">
+      <div class="canvas-shell">
+        <canvas #handwritingCanvas class="handwriting-canvas"></canvas>
+      </div>
+
+      <div class="handwriting-actions">
+        <button type="button" class="secondary-btn" (click)="clearCanvas()">
+          Xóa
+        </button>
+
+        <div class="recognizing-text" *ngIf="recognizing">
+          Đang nhận diện...
+        </div>
+      </div>
+
+      <div class="handwriting-error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="handwriting-candidates" *ngIf="candidates.length > 0">
+        <div class="candidate-label">Gợi ý:</div>
+
+        <button
+          type="button"
+          class="candidate-btn"
+          *ngFor="let candidate of candidates"
+          (click)="chooseCandidate(candidate)"
+        >
+          {{ candidate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

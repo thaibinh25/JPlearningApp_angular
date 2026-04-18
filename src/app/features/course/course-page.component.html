@@ -1,0 +1,48 @@
+<div class="course-page">
+  <div class="course-hero">
+    <div class="top-bar">
+      <button class="back-btn" (click)="goBack()">← Quay lại</button>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">Khóa học</div>
+      <h1>Danh sách khóa học</h1>
+      <p class="subtitle">
+        Chọn khóa học phù hợp với cấp độ hiện tại để tiếp tục lộ trình học.
+      </p>
+
+      <div class="level-chip">
+        <span class="label">Level ID</span>
+        <span class="value">{{ levelId }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="state-box loading">
+    Đang tải course...
+  </div>
+
+  <div *ngIf="errorMessage" class="state-box error">
+    {{ errorMessage }}
+  </div>
+
+  <div class="course-grid" *ngIf="!loading && courses.length > 0">
+    <div class="course-card" *ngFor="let course of courses" (click)="goToLessons(course)">
+      <div class="card-top">
+        <div class="card-icon">コ</div>
+        <div class="card-arrow">→</div>
+      </div>
+
+      <h2>{{ course.title }}</h2>
+      <p>{{ course.description || 'Vào xem danh sách bài học' }}</p>
+
+      <div class="card-footer">
+        <span>Xem bài học</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && courses.length === 0" class="state-box empty">
+    Level này chưa có course nào.
+  </div>
+</div>

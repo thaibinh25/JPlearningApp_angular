@@ -1,0 +1,60 @@
+<div class="lesson-list-page">
+  <div class="page-header">
+    <div class="top-bar">
+      <button class="back-btn" (click)="goBack()">← Quay lại</button>
+    </div>
+
+    <div class="hero-copy">
+      <div class="hero-badge">Bài học</div>
+      <h1>Danh sách bài học</h1>
+      <p>Chọn bài để học hoặc luyện tập</p>
+      <div class="course-chip">
+        <span class="label">Course ID</span>
+        <span class="value">{{ courseId }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="state-box loading">
+    Đang tải danh sách bài học...
+  </div>
+
+  <div *ngIf="errorMessage" class="state-box error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && lessons.length === 0" class="state-box empty">
+    Chưa có bài học nào.
+  </div>
+
+  <div class="lesson-grid" *ngIf="!loading && lessons.length > 0">
+    <div class="lesson-card" *ngFor="let lesson of lessons">
+      <div class="lesson-card__content">
+        <div class="lesson-card__top">
+          <div class="lesson-icon">語</div>
+          <div class="lesson-index">Lesson</div>
+        </div>
+
+        <h2>{{ lesson.title }}</h2>
+
+        <p class="description" *ngIf="lesson.description">
+          {{ lesson.description }}
+        </p>
+
+        <p class="meta" *ngIf="lesson.totalItems !== undefined">
+          {{ lesson.totalItems }} từ
+        </p>
+      </div>
+
+      <div class="lesson-card__actions">
+        <button class="btn btn-study" (click)="goToStudy(lesson.id)">
+          Học bài
+        </button>
+
+        <button class="btn btn-practice" (click)="goToPractice(lesson)">
+          Luyện tập
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

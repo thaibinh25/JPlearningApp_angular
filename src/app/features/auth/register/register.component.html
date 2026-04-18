@@ -1,0 +1,72 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>Đăng ký</h2>
+    <p class="subtitle">Tạo tài khoản mới để sử dụng hệ thống</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Họ và tên</label>
+        <input type="text" formControlName="fullName" placeholder="Nhập họ và tên" />
+        <small class="error" *ngIf="fullName?.touched && fullName?.invalid">
+          Họ và tên là bắt buộc
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Số điện thoại</label>
+        <input type="text" formControlName="phoneNumber" placeholder="Nhập số điện thoại" />
+        <small class="error" *ngIf="phoneNumber?.touched && phoneNumber?.invalid">
+          Số điện thoại là bắt buộc
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Nhập email" />
+      </div>
+
+      <div class="form-group">
+        <label>Mật khẩu</label>
+        <input type="password" formControlName="password" placeholder="Nhập mật khẩu" />
+        <small class="error" *ngIf="password?.touched && password?.invalid">
+          Mật khẩu phải có ít nhất 6 ký tự
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Nhập lại mật khẩu</label>
+        <input type="password" formControlName="confirmPassword" placeholder="Nhập lại mật khẩu" />
+        <small class="error" *ngIf="confirmPassword?.touched && registerForm.hasError('passwordMismatch')">
+          Mật khẩu nhập lại không khớp
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>Địa chỉ</label>
+        <input type="text" formControlName="address" placeholder="Nhập địa chỉ" />
+      </div>
+
+      <div class="form-group">
+        <label>Ngày sinh</label>
+        <input type="date" formControlName="dateOfBirth" />
+      </div>
+
+      <div class="success-box" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <div class="error-box" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Đang đăng ký...' : 'Đăng ký' }}
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Đã có tài khoản?
+      <a routerLink="/login">Đăng nhập</a>
+    </div>
+  </div>
+</div>
