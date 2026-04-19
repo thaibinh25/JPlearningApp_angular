@@ -1,61 +1,58 @@
 <div class="handwriting-overlay">
-  <div class="handwriting-modal">
-    <div class="handwriting-header">
-      <div class="header-copy">
-        <h3>Viết tay để nhập đáp án</h3>
-        <p>Dừng bút khoảng 0.7 giây để hệ thống tự nhận diện.</p>
-      </div>
-
-      <button type="button" class="close-btn" (click)="closePanel()">✕</button>
-    </div>
-
-    <div class="handwriting-body">
-      <!-- KHU VỰC NHẬN DIỆN / GỢI Ý NẰM TRÊN -->
-      <div class="recognition-panel">
-        <div class="recognition-top">
-          <div class="candidate-label">Gợi ý nhận diện</div>
-
-          <div class="recognizing-text" *ngIf="recognizing">
-            Đang nhận diện...
-          </div>
-        </div>
-
-        <div class="handwriting-error" *ngIf="errorMessage">
-          {{ errorMessage }}
-        </div>
-
-        <div class="handwriting-candidates">
-          <ng-container *ngIf="candidates.length > 0; else emptyCandidates">
-            <button
-              type="button"
-              class="candidate-btn"
-              *ngFor="let candidate of candidates"
-              (click)="chooseCandidate(candidate)"
-            >
-              {{ candidate }}
-            </button>
-          </ng-container>
-
-          <ng-template #emptyCandidates>
-            <div class="candidate-placeholder">
-              Viết vào khung bên dưới, hệ thống sẽ tự gợi ý tại đây.
+    <div class="handwriting-modal">
+        <div class="handwriting-header">
+            <div class="header-copy">
+                <h3>Viết tay để nhập đáp án</h3>
+                <p>Dừng bút khoảng 0.7 giây để hệ thống tự nhận diện.</p>
             </div>
-          </ng-template>
-        </div>
-      </div>
 
-      <!-- KHU VỰC VIẾT NẰM DƯỚI -->
-      <div class="canvas-panel">
-        <div class="canvas-shell">
-          <canvas #handwritingCanvas class="handwriting-canvas"></canvas>
+            <button type="button" class="close-btn" (click)="closePanel()">✕</button>
         </div>
 
-        <div class="handwriting-actions">
-          <button type="button" class="secondary-btn" (click)="clearCanvas()">
-            Xóa
-          </button>
+        <div class="handwriting-body">
+            <!-- KHU VỰC NHẬN DIỆN / GỢI Ý NẰM TRÊN -->
+            <div class="recognition-panel">
+                <div class="recognition-top">
+                    <div class="candidate-label">Gợi ý nhận diện</div>
+
+                    <div class="recognizing-text" *ngIf="recognizing">
+                        Đang nhận diện...
+                    </div>
+                </div>
+
+                <div class="handwriting-error" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="handwriting-candidates">
+                    <ng-container *ngIf="candidates.length > 0; else emptyCandidates">
+                        <button type="button" class="candidate-btn" *ngFor="let candidate of candidates"
+                            (touchend)="chooseCandidate(candidate, $event)"
+                            (click)="chooseCandidate(candidate, $event)">
+                            {{ candidate }}
+                        </button>
+                    </ng-container>
+
+                    <ng-template #emptyCandidates>
+                        <div class="candidate-placeholder">
+                            Viết vào khung bên dưới, hệ thống sẽ tự gợi ý tại đây.
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+            <!-- KHU VỰC VIẾT NẰM DƯỚI -->
+            <div class="canvas-panel">
+                <div class="canvas-shell">
+                    <canvas #handwritingCanvas class="handwriting-canvas"></canvas>
+                </div>
+
+                <div class="handwriting-actions">
+                    <button type="button" class="secondary-btn" (click)="clearCanvas()">
+                        Xóa
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

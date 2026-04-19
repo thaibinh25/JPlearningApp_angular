@@ -43,6 +43,7 @@ export class HandwritingPanelComponent implements AfterViewInit, OnDestroy {
 
   private autoRecognizeTimer: ReturnType<typeof setTimeout> | null = null;
   private readonly AUTO_RECOGNIZE_DELAY = 700;
+  private candidateSelecting = false;
 
   constructor(private handwritingService: HandwritingService) {}
 
@@ -225,9 +226,20 @@ export class HandwritingPanelComponent implements AfterViewInit, OnDestroy {
     this.recognizing = false;
   }
 
-  chooseCandidate(candidate: string): void {
-    this.selected.emit(candidate);
-  }
+  chooseCandidate(candidate: string, event?: Event): void {
+  event?.preventDefault();
+  event?.stopPropagation();
+
+  if (this.candidateSelecting) return;
+  this.candidateSelecting = true;
+
+  this.selected.emit(candidate);
+  this.closePanel();
+
+  setTimeout(() => {
+    this.candidateSelecting = false;
+  }, 200);
+}
 
   closePanel(): void {
     this.clearAutoRecognizeTimer();
