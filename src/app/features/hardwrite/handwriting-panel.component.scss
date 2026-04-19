@@ -73,17 +73,18 @@
 .handwriting-body {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   padding: 14px 18px 18px;
   overflow-y: auto;
   min-height: 0;
 }
 
 .recognition-panel {
+  flex: 0.42;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
   background: #f9fafb;
-  padding: 14px;
+  padding: 12px 14px;
   box-sizing: border-box;
 }
 
@@ -92,7 +93,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   flex-wrap: wrap;
 }
 
@@ -110,7 +111,7 @@
 }
 
 .handwriting-error {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   padding: 10px 12px;
   border-radius: 12px;
   background: #fef2f2;
@@ -120,11 +121,13 @@
 }
 
 .handwriting-candidates {
-  min-height: 74px;
+  min-height: 42px;
+  max-height: 58px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
+  overflow-y: auto;
 }
 
 .candidate-btn {
@@ -132,8 +135,8 @@
   background: #eff6ff;
   color: #1d4ed8;
   border-radius: 12px;
-  padding: 10px 14px;
-  font-size: 18px;
+  padding: 8px 12px;
+  font-size: 16px;
   font-weight: 700;
   cursor: pointer;
   transition: 0.2s ease;
@@ -149,37 +152,44 @@
 .candidate-placeholder {
   display: flex;
   align-items: center;
-  min-height: 50px;
+  min-height: 36px;
   font-size: 13px;
   color: #9ca3af;
   line-height: 1.5;
 }
 
 .canvas-panel {
+  flex: 1.75;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-height: 0;
 }
 
 .canvas-shell {
   border: 2px dashed #cbd5e1;
   border-radius: 18px;
   background: #ffffff;
-  padding: 12px;
+  padding: 8px;
   box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
   box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
 }
 
 .handwriting-canvas {
   display: block;
   width: 100%;
-  max-width: 760px;
-  height: 170px;
+  height: 250px;
   background: #ffffff;
-  border-radius: 14px;
+  border-radius: 12px;
   touch-action: none;
   cursor: crosshair;
-  margin: 0 auto;
+  margin: 0;
+  max-width: none;
+  flex: 1;
 }
 
 .handwriting-actions {
@@ -234,13 +244,28 @@
     padding: 14px 16px 16px;
   }
 
-  .handwriting-canvas {
-    height: 160px;
-    max-width: 100%;
+  .recognition-panel {
+    flex: 0.4;
+    padding: 12px;
+  }
+
+  .handwriting-candidates {
+    min-height: 40px;
+    max-height: 54px;
+    gap: 8px;
   }
 
   .candidate-btn {
-    font-size: 17px;
+    font-size: 15px;
+    padding: 8px 11px;
+  }
+
+  .canvas-panel {
+    flex: 1.8;
+  }
+
+  .handwriting-canvas {
+    height: 220px;
   }
 }
 
@@ -288,12 +313,13 @@
   }
 
   .recognition-panel {
-    padding: 12px;
+    flex: 0.38;
+    padding: 10px;
     border-radius: 14px;
   }
 
   .recognition-top {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     gap: 8px;
   }
 
@@ -306,28 +332,33 @@
   }
 
   .handwriting-candidates {
-    min-height: 56px;
-    gap: 8px;
+    min-height: 34px;
+    max-height: 48px;
+    gap: 6px;
   }
 
   .candidate-btn {
-    font-size: 15px;
-    padding: 8px 10px;
+    font-size: 14px;
+    padding: 6px 9px;
     border-radius: 10px;
   }
 
   .candidate-placeholder {
-    min-height: 42px;
+    min-height: 30px;
     font-size: 12px;
   }
 
+  .canvas-panel {
+    flex: 1.9;
+  }
+
   .canvas-shell {
-    padding: 8px;
+    padding: 6px;
     border-radius: 14px;
   }
 
   .handwriting-canvas {
-    height: 130px;
+    height: 200px;
     border-radius: 10px;
   }
 

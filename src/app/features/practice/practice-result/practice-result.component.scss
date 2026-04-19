@@ -589,3 +589,37 @@
     font-size: 0.88rem;
   }
 }
+.mini-chip {
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f4f6f8;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+
+  .mini-value {
+    font-size: 13px;
+    color: #2d3748;
+  }
+}
+
+/* ===== ĐÚNG ===== */
+.mini-chip.correct {
+  background: #e6f7ee;
+  border-color: #38a169;
+
+  .mini-value {
+    color: #2f855a;
+    font-weight: 600;
+  }
+}
+
+/* ===== SAI ===== */
+.mini-chip.wrong {
+  background: #fde8e8;
+  border-color: #e53e3e;
+
+  .mini-value {
+    color: #c53030;
+    font-weight: 600;
+  }
+}
