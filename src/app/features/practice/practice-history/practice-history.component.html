@@ -1,74 +1,71 @@
 <div class="practice-history-container">
-  <div class="history-hero">
-    <div class="hero-badge">Lịch sử</div>
-    <h1>Lịch sử luyện tập</h1>
-    <p class="hero-subtitle">
-      Xem lại các lần làm bài trước đó và mở lại kết quả chi tiết khi cần.
-    </p>
-  </div>
-
-  <app-loading-spinner
-    *ngIf="loading"
-    message="Đang tải lịch sử..."
-  ></app-loading-spinner>
-
-  <div class="error-box" *ngIf="errorMessage">
-    {{ errorMessage }}
-  </div>
-
-  <div *ngIf="!loading && historyList.length > 0" class="history-card">
-    <div class="table-header">
-      <div>
-        <h2>Danh sách phiên luyện tập</h2>
-        <p>Tổng hợp các lần làm bài gần đây của bạn.</p>
-      </div>
+    <div class="history-hero">
+        <div class="hero-badge">Lịch sử</div>
+        <h1>Lịch sử luyện tập</h1>
+        <p class="hero-subtitle">
+            Xem lại các lần làm bài trước đó và mở lại kết quả chi tiết khi cần.
+        </p>
     </div>
 
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Session ID</th>
-            <th>Lesson ID</th>
-            <th>Mode</th>
-            <th>Tổng câu</th>
-            <th>Đúng</th>
-            <th>Sai</th>
-            <th>Điểm</th>
-            <th>Bắt đầu</th>
-            <th>Kết thúc</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of historyList">
-            <td class="session-cell">{{ item.sessionId }}</td>
-            <td>{{ item.lessonId }}</td>
-            <td>
-              <span class="mode-badge">{{ item.mode }}</span>
-            </td>
-            <td>{{ item.totalItems }}</td>
-            <td class="correct">{{ item.totalCorrect }}</td>
-            <td class="wrong">{{ item.totalWrong }}</td>
-            <td class="score">{{ item.score }}</td>
-            <td>{{ item.startedAt }}</td>
-            <td>{{ item.finishedAt || 'Chưa xong' }}</td>
-            <td>
-              <button class="view-btn" (click)="viewResult(item.sessionId)">
-                Xem kết quả
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <app-loading-spinner *ngIf="loading" message="Đang tải lịch sử..."></app-loading-spinner>
+
+    <div class="error-box" *ngIf="errorMessage">
+        {{ errorMessage }}
     </div>
-  </div>
 
-  <div *ngIf="!loading && historyList.length === 0" class="empty-state">
-    Chưa có lịch sử luyện tập.
-  </div>
+    <div *ngIf="!loading && historyList.length > 0" class="history-card">
+        <div class="table-header">
+            <div>
+                <h2>Danh sách phiên luyện tập</h2>
+                <p>Tổng hợp các lần làm bài gần đây của bạn.</p>
+            </div>
+        </div>
 
-  <div class="actions">
-    <button class="back-start-btn" (click)="goToStart()">Quay lại bắt đầu</button>
-  </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Session ID</th>
+                        <th>Lesson ID</th>
+                        <th>Mode</th>
+                        <th>Tổng câu</th>
+                        <th>Đúng</th>
+                        <th>Sai</th>
+                        <th>Điểm</th>
+                        <th>Bắt đầu</th>
+                        <th>Kết thúc</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of historyList">
+                        <td class="session-cell">{{ item.sessionId }}</td>
+                        <td>{{ item.lessonId }}</td>
+                        <td>
+                            <span class="mode-badge">{{ item.mode }}</span>
+                        </td>
+                        <td>{{ item.totalItems }}</td>
+                        <td class="correct">{{ item.totalCorrect }}</td>
+                        <td class="wrong">{{ item.totalWrong }}</td>
+                        <td class="score">{{ item.score }}</td>
+                        <td>{{ item.startedAt }}</td>
+                        <td>{{ item.finishedAt || 'Chưa xong' }}</td>
+                        <td>
+                            <button type="button" class="view-btn" (click)="viewResult(item.sessionId)">
+                                Xem kết quả
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="!loading && historyList.length === 0" class="empty-state">
+        Chưa có lịch sử luyện tập.
+    </div>
+
+    <div class="actions">
+        <button type="button" class="back-start-btn" (click)="goToStart()">Quay lại bắt đầu</button>
+    </div>
 </div>

@@ -57,22 +57,22 @@
                         <div class="row-label">Đáp án</div>
 
                         <div class="mini-chip">
-                        
+
                             <span class="mini-value">{{ item.correctKanji || '—' }}</span>
                         </div>
 
                         <div class="mini-chip">
-                            
+
                             <span class="mini-value">{{ item.correctKana || '—' }}</span>
                         </div>
 
                         <div class="mini-chip">
-                          
+
                             <span class="mini-value">{{ item.correctHanViet || '—' }}</span>
                         </div>
 
                         <div class="mini-chip">
-                           
+
                             <span class="mini-value">{{ item.correctMeaningVi || '—' }}</span>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
 
                         <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.kanji"
                             [ngClass]="visibleUserFields.kanji ? getClass(item.kanjiCorrect) : ''">
-                            
+
                             <span class="mini-value">
                                 {{ visibleUserFields.kanji ? (item.inputKanji || '—') : '' }}
                             </span>
@@ -90,7 +90,7 @@
 
                         <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.kana"
                             [ngClass]="visibleUserFields.kana ? getClass(item.kanaCorrect) : ''">
-                          
+
                             <span class="mini-value">
                                 {{ visibleUserFields.kana ? (item.inputKana || '—') : '' }}
                             </span>
@@ -98,7 +98,7 @@
 
                         <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.hanViet"
                             [ngClass]="visibleUserFields.hanViet ? getClass(item.hanVietCorrect) : ''">
-                            
+
                             <span class="mini-value">
                                 {{ visibleUserFields.hanViet ? (item.inputHanViet || '—') : '' }}
                             </span>
@@ -106,7 +106,7 @@
 
                         <div class="mini-chip" [class.hidden-slot]="!visibleUserFields.meaningVi"
                             [ngClass]="visibleUserFields.meaningVi ? getClass(item.meaningViCorrect) : ''">
-                           
+
                             <span class="mini-value">
                                 {{ visibleUserFields.meaningVi ? (item.inputMeaningVi || '—') : '' }}
                             </span>
@@ -118,11 +118,11 @@
 
         <div class="actions-group">
             <div class="action-row primary-row">
-                <button class="primary-btn" (click)="redoAll()" [disabled]="redoLoading">
+                <button type="button" class="primary-btn" (click)="redoAll()" [disabled]="redoLoading">
                     {{ redoLoading ? 'Đang tạo...' : 'Làm lại toàn bộ bài' }}
                 </button>
 
-                <button class="primary-btn alt-btn" (click)="retryWrong()" [disabled]="retryLoading">
+                <button type="button" class="primary-btn alt-btn" (click)="retryWrong()" [disabled]="retryLoading">
                     {{ retryLoading ? 'Đang tạo...' : 'Luyện lại câu sai' }}
                 </button>
             </div>
@@ -136,8 +136,8 @@
             </div>
 
             <div class="action-row secondary-row">
-                <button class="secondary-btn" (click)="goToHistory()">Xem lịch sử</button>
-                <button class="ghost-btn" (click)="backToStart()">Làm bài mới</button>
+                <button type="button" class="secondary-btn" (click)="goToHistory()">Xem lịch sử</button>
+                <button type="button" class="ghost-btn" (click)="backToStart()">Làm bài mới</button>
             </div>
         </div>
     </ng-container>

@@ -1,165 +1,138 @@
 <div class="practice-page-container">
-  <div class="practice-hero" *ngIf="!loading">
-    <div class="hero-head">
-      <div>
-        <div class="hero-badge">Luyện tập</div>
-        <h1>Luyện tập</h1>
-        <p class="hero-subtitle">
-          Hoàn thành các ô trống để kiểm tra mức độ ghi nhớ của bạn.
-        </p>
-      </div>
+    <div class="practice-hero" *ngIf="!loading">
+        <div class="hero-head">
+            <div>
+                <div class="hero-badge">Luyện tập</div>
+                <h1>Luyện tập</h1>
+                <p class="hero-subtitle">
+                    Hoàn thành các ô trống để kiểm tra mức độ ghi nhớ của bạn.
+                </p>
+            </div>
 
-      <div class="practice-toolbar">
-        <button
-          type="button"
-          class="handwriting-toggle-btn"
-          [class.active]="handwritingMode"
-          (click)="toggleHandwritingMode()"
-        >
-          {{ handwritingMode ? 'Tắt viết tay' : 'Bật viết tay' }}
-        </button>
-      </div>
-    </div>
-
-    <div class="hero-bottom" *ngIf="handwritingMode">
-      <span class="handwriting-hint">
-        Chế độ viết tay đang bật. Bấm vào ô nhập để mở khung viết tay.
-      </span>
-    </div>
-  </div>
-
-  <app-loading-spinner
-    *ngIf="loading"
-    message="Đang tải dữ liệu bài luyện..."
-  ></app-loading-spinner>
-
-  <div class="error-box" *ngIf="errorMessage">
-    {{ errorMessage }}
-  </div>
-
-  <div *ngIf="practiceDetail && !loading" class="practice-content">
-    <div class="practice-summary">
-      <div class="summary-card">
-        <span class="summary-label">Session ID</span>
-        <strong>{{ practiceDetail.sessionId }}</strong>
-      </div>
-
-      <div class="summary-card">
-        <span class="summary-label">Lesson ID</span>
-        <strong>{{ practiceDetail.lessonId }}</strong>
-      </div>
-
-      <div class="summary-card">
-        <span class="summary-label">Mode</span>
-        <strong>{{ practiceDetail.mode }}</strong>
-      </div>
-
-      <div class="summary-card progress-card">
-        <span class="summary-label">Số câu</span>
-        <strong>{{ practiceDetail.items.length }}</strong>
-      </div>
-    </div>
-
-    <div class="practice-table-card">
-      <div class="table-header">
-        <div>
-          <h2>Bảng luyện tập</h2>
-          <p>Điền đáp án vào các ô còn trống rồi nộp bài.</p>
+            <div class="practice-toolbar">
+                <button type="button" class="handwriting-toggle-btn" [class.active]="handwritingMode"
+                    (click)="toggleHandwritingMode()">
+                    {{ handwritingMode ? 'Tắt viết tay' : 'Bật viết tay' }}
+                </button>
+            </div>
         </div>
-      </div>
 
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th class="col-index">#</th>
-              <th>Kanji</th>
-              <th>Kana</th>
-              <th>Nghĩa Hán Việt</th>
-              <th>Nghĩa Việt</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr *ngFor="let item of practiceDetail.items; let i = index">
-              <td class="index-cell">{{ i + 1 }}</td>
-
-              <td>
-                <ng-container *ngIf="!practiceDetail.hiddenKanji; else kanjiInput">
-                  <div class="answer-display">{{ item.kanji }}</div>
-                </ng-container>
-                <ng-template #kanjiInput>
-                  <input
-                    type="text"
-                    [(ngModel)]="userAnswers[i].inputKanji"
-                    placeholder="Nhập kanji"
-                    [readonly]="handwritingMode"
-                    (click)="openHandwritingForField(i, 'inputKanji', $event)"
-                  />
-                </ng-template>
-              </td>
-
-              <td>
-                <ng-container *ngIf="!practiceDetail.hiddenKana; else kanaInput">
-                  <div class="answer-display">{{ item.kana }}</div>
-                </ng-container>
-                <ng-template #kanaInput>
-                  <input
-                    type="text"
-                    [(ngModel)]="userAnswers[i].inputKana"
-                    placeholder="Nhập kana"
-                    [readonly]="handwritingMode"
-                    (click)="openHandwritingForField(i, 'inputKana', $event)"
-                  />
-                </ng-template>
-              </td>
-
-              <td>
-                <ng-container *ngIf="!practiceDetail.hiddenHanViet; else hanVietInput">
-                  <div class="answer-display">{{ item.hanViet }}</div>
-                </ng-container>
-                <ng-template #hanVietInput>
-                  <input
-                    type="text"
-                    [(ngModel)]="userAnswers[i].inputHanViet"
-                    placeholder="Nhập nghĩa Hán Việt"
-                    [readonly]="handwritingMode"
-                    (click)="openHandwritingForField(i, 'inputHanViet', $event)"
-                  />
-                </ng-template>
-              </td>
-
-              <td>
-                <ng-container *ngIf="!practiceDetail.hiddenMeaningVi; else meaningViInput">
-                  <div class="answer-display">{{ item.meaningVi }}</div>
-                </ng-container>
-                <ng-template #meaningViInput>
-                  <input
-                    type="text"
-                    [(ngModel)]="userAnswers[i].inputMeaningVi"
-                    placeholder="Nhập nghĩa Việt"
-                    [readonly]="handwritingMode"
-                    (click)="openHandwritingForField(i, 'inputMeaningVi', $event)"
-                  />
-                </ng-template>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div class="hero-bottom" *ngIf="handwritingMode">
+            <span class="handwriting-hint">
+                Chế độ viết tay đang bật. Bấm vào ô nhập để mở khung viết tay.
+            </span>
+        </div>
     </div>
 
-    <div class="actions">
-      <button class="primary-btn" (click)="submitPractice()" [disabled]="submitting">
-        {{ submitting ? 'Đang nộp bài...' : 'Nộp bài' }}
-      </button>
-    </div>
-  </div>
+    <app-loading-spinner *ngIf="loading" message="Đang tải dữ liệu bài luyện..."></app-loading-spinner>
 
-  <app-handwriting-panel
-    *ngIf="showHandwritingPanel"
-    [field]="activeInputField"
-    (selected)="onCandidateSelected($event)"
-    (closed)="closeHandwritingPanel()"
-  ></app-handwriting-panel>
+    <div class="error-box" *ngIf="errorMessage">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngIf="practiceDetail && !loading" class="practice-content">
+        <div class="practice-summary">
+            <div class="summary-card">
+                <span class="summary-label">Session ID</span>
+                <strong>{{ practiceDetail.sessionId }}</strong>
+            </div>
+
+            <div class="summary-card">
+                <span class="summary-label">Lesson ID</span>
+                <strong>{{ practiceDetail.lessonId }}</strong>
+            </div>
+
+            <div class="summary-card">
+                <span class="summary-label">Mode</span>
+                <strong>{{ practiceDetail.mode }}</strong>
+            </div>
+
+            <div class="summary-card progress-card">
+                <span class="summary-label">Số câu</span>
+                <strong>{{ practiceDetail.items.length }}</strong>
+            </div>
+        </div>
+
+        <div class="practice-table-card">
+            <div class="table-header">
+                <div>
+                    <h2>Bảng luyện tập</h2>
+                    <p>Điền đáp án vào các ô còn trống rồi nộp bài.</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-index">#</th>
+                            <th>Kanji</th>
+                            <th>Kana</th>
+                            <th>Nghĩa Hán Việt</th>
+                            <th>Nghĩa Việt</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of practiceDetail.items; let i = index">
+                            <td class="index-cell">{{ i + 1 }}</td>
+
+                            <td>
+                                <ng-container *ngIf="!practiceDetail.hiddenKanji; else kanjiInput">
+                                    <div class="answer-display">{{ item.kanji }}</div>
+                                </ng-container>
+                                <ng-template #kanjiInput>
+                                    <input type="text" [(ngModel)]="userAnswers[i].inputKanji" placeholder="Nhập kanji"
+                                        [readonly]="handwritingMode"
+                                        (click)="openHandwritingForField(i, 'inputKanji', $event)" />
+                                </ng-template>
+                            </td>
+
+                            <td>
+                                <ng-container *ngIf="!practiceDetail.hiddenKana; else kanaInput">
+                                    <div class="answer-display">{{ item.kana }}</div>
+                                </ng-container>
+                                <ng-template #kanaInput>
+                                    <input type="text" [(ngModel)]="userAnswers[i].inputKana" placeholder="Nhập kana"
+                                        [readonly]="handwritingMode"
+                                        (click)="openHandwritingForField(i, 'inputKana', $event)" />
+                                </ng-template>
+                            </td>
+
+                            <td>
+                                <ng-container *ngIf="!practiceDetail.hiddenHanViet; else hanVietInput">
+                                    <div class="answer-display">{{ item.hanViet }}</div>
+                                </ng-container>
+                                <ng-template #hanVietInput>
+                                    <input type="text" [(ngModel)]="userAnswers[i].inputHanViet"
+                                        placeholder="Nhập nghĩa Hán Việt" [readonly]="handwritingMode"
+                                        (click)="openHandwritingForField(i, 'inputHanViet', $event)" />
+                                </ng-template>
+                            </td>
+
+                            <td>
+                                <ng-container *ngIf="!practiceDetail.hiddenMeaningVi; else meaningViInput">
+                                    <div class="answer-display">{{ item.meaningVi }}</div>
+                                </ng-container>
+                                <ng-template #meaningViInput>
+                                    <input type="text" [(ngModel)]="userAnswers[i].inputMeaningVi"
+                                        placeholder="Nhập nghĩa Việt" [readonly]="handwritingMode"
+                                        (click)="openHandwritingForField(i, 'inputMeaningVi', $event)" />
+                                </ng-template>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="primary-btn" (click)="submitPractice()" [disabled]="submitting">
+                {{ submitting ? 'Đang nộp bài...' : 'Nộp bài' }}
+            </button>
+        </div>
+    </div>
+
+    <app-handwriting-panel *ngIf="showHandwritingPanel" [field]="activeInputField"
+        (selected)="onCandidateSelected($event)" (closed)="closeHandwritingPanel()"></app-handwriting-panel>
 </div>

@@ -11,13 +11,13 @@
     <h2>{{ data.lessonTitle }}</h2>
 
     <div class="controls">
-      <button (click)="showAll()">Hiện tất cả</button>
-      <button (click)="hideAll()">Ẩn tất cả</button>
+      <button type="button" (click)="showAll()">Hiện tất cả</button>
+      <button type="button" (click)="hideAll()">Ẩn tất cả</button>
 
-      <button (click)="showKanji = !showKanji">Kanji</button>
-      <button (click)="showKana = !showKana">Kana</button>
-      <button (click)="showHanViet = !showHanViet">Hán Việt</button>
-      <button (click)="showMeaningVi = !showMeaningVi">Nghĩa</button>
+      <button type="button" (click)="showKanji = !showKanji">Kanji</button>
+      <button type="button" (click)="showKana = !showKana">Kana</button>
+      <button type="button" (click)="showHanViet = !showHanViet">Hán Việt</button>
+      <button type="button" (click)="showMeaningVi = !showMeaningVi">Nghĩa</button>
     </div>
 
     <div class="table-wrapper">
@@ -46,7 +46,7 @@
     </div>
 
     <div class="actions">
-      <button (click)="goToPractice()">Chuyển sang luyện tập</button>
+      <button type="button" (click)="goToPractice()">Chuyển sang luyện tập</button>
     </div>
   </div>
 </div>

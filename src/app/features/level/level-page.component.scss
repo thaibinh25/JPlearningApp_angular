@@ -1,23 +1,26 @@
 .level-page {
+  width: 100%;
   max-width: 1220px;
   margin: 0 auto;
-  padding: 34px 24px 56px;
+  padding: 32px 24px 56px;
+  box-sizing: border-box;
 }
 
 .level-hero {
   position: relative;
   overflow: hidden;
   margin-bottom: 28px;
-  padding: 34px 30px;
+  padding: 28px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 28px;
-  border: 1px solid rgba(226, 232, 240, 0.92);
   background:
-    radial-gradient(circle at top left, rgba(125, 211, 252, 0.20), transparent 30%),
+    radial-gradient(circle at top left, rgba(125, 211, 252, 0.22), transparent 32%),
     radial-gradient(circle at top right, rgba(196, 181, 253, 0.18), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(248, 250, 252, 0.96));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.96));
   box-shadow:
-    0 24px 52px rgba(15, 23, 42, 0.07),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    0 24px 54px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
 }
 
 .level-hero::before {
@@ -26,10 +29,10 @@
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.34) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.34) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.36) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.36) 1px, transparent 1px);
   background-size: 26px 26px;
-  opacity: 0.34;
+  opacity: 0.35;
 }
 
 .level-hero > * {
@@ -53,15 +56,16 @@
 
 .level-page h1 {
   margin: 0 0 10px;
-  font-size: clamp(2rem, 3vw, 2.8rem);
-  line-height: 1.1;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1.12;
   color: #0f172a;
   letter-spacing: -0.02em;
+  word-break: break-word;
 }
 
 .subtitle {
   margin: 0;
-  max-width: 720px;
+  max-width: 760px;
   color: #64748b;
   font-size: 1rem;
   line-height: 1.7;
@@ -76,10 +80,11 @@
 .level-card {
   position: relative;
   overflow: hidden;
-  padding: 24px;
-  border-radius: 24px;
-  border: 1px solid rgba(226, 232, 240, 0.95);
+  min-width: 0;
   background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  padding: 24px;
   cursor: pointer;
   transition:
     transform 0.24s ease,
@@ -89,17 +94,17 @@
   box-shadow:
     0 16px 36px rgba(15, 23, 42, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  box-sizing: border-box;
 }
 
 .level-card::before {
   content: '';
   position: absolute;
-  right: -24px;
-  bottom: -24px;
+  inset: auto -30px -30px auto;
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(191, 219, 254, 0.44), transparent 70%);
+  background: radial-gradient(circle, rgba(191, 219, 254, 0.45), transparent 68%);
   pointer-events: none;
 }
 
@@ -108,7 +113,7 @@
   border-color: rgba(147, 197, 253, 0.95);
   background: #ffffff;
   box-shadow:
-    0 22px 46px rgba(37, 99, 235, 0.10),
+    0 22px 44px rgba(37, 99, 235, 0.10),
     inset 0 1px 0 rgba(255, 255, 255, 0.98);
 }
 
@@ -117,20 +122,22 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
+  gap: 12px;
 }
 
 .level-icon {
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
+  flex: 0 0 50px;
   border-radius: 16px;
   background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
   color: #1d4ed8;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.16rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .card-arrow {
@@ -138,6 +145,7 @@
   font-size: 1.2rem;
   font-weight: 800;
   transition: transform 0.22s ease, color 0.22s ease;
+  flex-shrink: 0;
 }
 
 .level-card:hover .card-arrow {
@@ -148,15 +156,17 @@
 .level-card h2 {
   margin: 0 0 10px;
   font-size: 1.28rem;
-  line-height: 1.35;
   color: #0f172a;
+  line-height: 1.35;
+  word-break: break-word;
 }
 
 .level-card p {
   margin: 0;
   color: #64748b;
-  font-size: 0.95rem;
   line-height: 1.7;
+  font-size: 0.95rem;
+  word-break: break-word;
 }
 
 .card-footer {
@@ -176,6 +186,7 @@
   border: 1px solid rgba(226, 232, 240, 0.9);
   background: rgba(255, 255, 255, 0.84);
   box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+  box-sizing: border-box;
 }
 
 .state-box.loading {
@@ -192,31 +203,108 @@
   color: #475569;
 }
 
-@media (max-width: 768px) {
+/* Tablet / iPad */
+@media (max-width: 1024px) {
   .level-page {
-    padding: 22px 14px 44px;
+    padding: 24px 18px 46px;
   }
 
   .level-hero {
-    padding: 24px 20px;
-    border-radius: 22px;
-    margin-bottom: 22px;
+    padding: 24px;
+    border-radius: 24px;
+    margin-bottom: 24px;
   }
 
   .level-grid {
-    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
   }
 
   .level-card {
-    padding: 20px;
-    border-radius: 20px;
+    padding: 22px;
+    border-radius: 22px;
   }
 
   .level-page h1 {
-    font-size: 1.85rem;
+    font-size: 2rem;
   }
 
   .subtitle {
-    font-size: 0.95rem;
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .level-page {
+    padding: 18px 12px 36px;
+  }
+
+  .level-hero {
+    padding: 18px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+
+  .hero-badge {
+    min-height: 30px;
+    padding: 0 12px;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+  }
+
+  .level-page h1 {
+    font-size: 1.55rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .level-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .level-card {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .card-top {
+    margin-bottom: 14px;
+  }
+
+  .level-icon {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+    border-radius: 14px;
+    font-size: 1rem;
+  }
+
+  .level-card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .level-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .card-footer {
+    margin-top: 14px;
+    font-size: 0.88rem;
+  }
+
+  .state-box {
+    padding: 15px 14px;
+    border-radius: 14px;
+    font-size: 0.92rem;
   }
 }
