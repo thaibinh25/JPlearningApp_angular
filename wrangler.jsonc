@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "japanness-learn-app",
+  "name": "jplearningapp-angular",
   "compatibility_date": "2026-04-19",
   "observability": {
     "enabled": true
