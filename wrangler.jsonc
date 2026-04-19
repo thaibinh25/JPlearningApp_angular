@@ -1,12 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "japanness-learn-app",
+  "name": "jplearningapp-angular",
   "compatibility_date": "2026-04-19",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "dist/japanness-learn-app/browser"
+    "directory": "dist/japanness-learn-app/browser",
+    "not_found_handling": "single-page-application"
   },
   "compatibility_flags": [
     "nodejs_compat"
