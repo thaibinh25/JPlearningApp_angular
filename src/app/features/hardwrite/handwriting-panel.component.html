@@ -10,35 +10,51 @@
     </div>
 
     <div class="handwriting-body">
-      <div class="canvas-shell">
-        <canvas #handwritingCanvas class="handwriting-canvas"></canvas>
-      </div>
+      <!-- KHU VỰC NHẬN DIỆN / GỢI Ý NẰM TRÊN -->
+      <div class="recognition-panel">
+        <div class="recognition-top">
+          <div class="candidate-label">Gợi ý nhận diện</div>
 
-      <div class="handwriting-actions">
-        <button type="button" class="secondary-btn" (click)="clearCanvas()">
-          Xóa
-        </button>
+          <div class="recognizing-text" *ngIf="recognizing">
+            Đang nhận diện...
+          </div>
+        </div>
 
-        <div class="recognizing-text" *ngIf="recognizing">
-          Đang nhận diện...
+        <div class="handwriting-error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <div class="handwriting-candidates">
+          <ng-container *ngIf="candidates.length > 0; else emptyCandidates">
+            <button
+              type="button"
+              class="candidate-btn"
+              *ngFor="let candidate of candidates"
+              (click)="chooseCandidate(candidate)"
+            >
+              {{ candidate }}
+            </button>
+          </ng-container>
+
+          <ng-template #emptyCandidates>
+            <div class="candidate-placeholder">
+              Viết vào khung bên dưới, hệ thống sẽ tự gợi ý tại đây.
+            </div>
+          </ng-template>
         </div>
       </div>
 
-      <div class="handwriting-error" *ngIf="errorMessage">
-        {{ errorMessage }}
-      </div>
+      <!-- KHU VỰC VIẾT NẰM DƯỚI -->
+      <div class="canvas-panel">
+        <div class="canvas-shell">
+          <canvas #handwritingCanvas class="handwriting-canvas"></canvas>
+        </div>
 
-      <div class="handwriting-candidates" *ngIf="candidates.length > 0">
-        <div class="candidate-label">Gợi ý:</div>
-
-        <button
-          type="button"
-          class="candidate-btn"
-          *ngFor="let candidate of candidates"
-          (click)="chooseCandidate(candidate)"
-        >
-          {{ candidate }}
-        </button>
+        <div class="handwriting-actions">
+          <button type="button" class="secondary-btn" (click)="clearCanvas()">
+            Xóa
+          </button>
+        </div>
       </div>
     </div>
   </div>

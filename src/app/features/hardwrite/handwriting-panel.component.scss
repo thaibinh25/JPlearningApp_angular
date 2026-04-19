@@ -1,264 +1,253 @@
 .handwriting-overlay {
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  padding: 16px;
+  z-index: 2000;
+  background: rgba(15, 23, 42, 0.25);
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: flex-end; // thay vì center
+  justify-content: center;
+  padding: 12px;
 }
 
 .handwriting-modal {
-  pointer-events: auto;
-  width: min(600px, calc(100vw - 32px));
-  max-height: calc(100vh - 96px);
-  overflow: auto;
-  border-radius: 24px;
-  border: 1px solid rgba(226, 232, 240, 0.95);
-  background:
-    radial-gradient(circle at top right, rgba(191, 219, 254, 0.18), transparent 26%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.98));
-  box-shadow:
-    0 24px 60px rgba(15, 23, 42, 0.18),
-    0 8px 20px rgba(15, 23, 42, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  animation: handwritingPanelIn 0.2s ease;
+  width: min(920px, 100%);
+  max-height: 72vh; // giảm từ 92vh xuống
+  background: #ffffff;
+  border-radius: 20px 20px 12px 12px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .handwriting-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 14px;
-  padding: 18px 18px 14px;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
-}
-
-.header-copy h3 {
-  margin: 0;
-  font-size: 1.06rem;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1.3;
-}
-
-.header-copy p {
-  margin: 6px 0 0;
-  color: #64748b;
-  font-size: 0.9rem;
-  line-height: 1.55;
-}
-
-.close-btn {
-  width: 38px;
-  height: 38px;
-  border: none;
-  border-radius: 12px;
+  gap: 16px;
+  padding: 18px 22px;
+  border-bottom: 1px solid #e5e7eb;
   background: #f8fafc;
-  color: #475569;
-  font-size: 1.15rem;
-  line-height: 1;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
 
-.close-btn:hover {
-  background: #e2e8f0;
-  color: #0f172a;
-  transform: scale(1.03);
+  .header-copy {
+    h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+  }
+
+  .close-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 12px;
+    background: #eef2f7;
+    color: #374151;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+      background: #e5e7eb;
+      transform: scale(1.03);
+    }
+  }
 }
 
 .handwriting-body {
-  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 18px 18px;
+  overflow-y: auto;
 }
 
-.canvas-shell {
-  padding: 10px;
-  border-radius: 20px;
-  background:
-    linear-gradient(180deg, rgba(239, 246, 255, 0.7), rgba(255, 255, 255, 0.95));
-  border: 1px solid rgba(191, 219, 254, 0.65);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-
-.handwriting-canvas {
-  width: 100%;
-  height: 240px;
-  display: block;
-  border: 2px dashed #93c5fd;
+/* PHẦN GỢI Ý / NHẬN DIỆN Ở TRÊN */
+.recognition-panel {
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
-  background:
-    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-  touch-action: none;
+  background: #f9fafb;
+  padding: 14px;
 }
 
-.handwriting-actions {
-  margin-top: 14px;
+.recognition-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
-}
-
-.secondary-btn {
-  border: 1px solid rgba(203, 213, 225, 0.95);
-  border-radius: 12px;
-  padding: 10px 16px;
-  font-weight: 700;
-  font-size: 0.92rem;
-  background: #ffffff;
-  color: #334155;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.secondary-btn:hover {
-  background: #f8fafc;
-  border-color: #93c5fd;
-  transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
-}
-
-.recognizing-text {
-  color: #2563eb;
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.handwriting-error {
-  margin-top: 14px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: #fff1f2;
-  border: 1px solid #fecdd3;
-  color: #be123c;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.handwriting-candidates {
-  margin-top: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(226, 232, 240, 0.9);
+  margin-bottom: 10px;
 }
 
 .candidate-label {
-  width: 100%;
-  margin-bottom: 2px;
-  color: #475569;
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: 700;
+  color: #1f2937;
+}
+
+.recognizing-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+.handwriting-error {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.handwriting-candidates {
+  min-height: 74px; // rất quan trọng: giữ layout ổn định
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .candidate-btn {
-  border: 1px solid rgba(147, 197, 253, 0.75);
-  background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #dbeafe;
+  background: #eff6ff;
   color: #1d4ed8;
-  border-radius: 14px;
-  min-width: 48px;
+  border-radius: 12px;
   padding: 10px 14px;
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
-}
+  transition: 0.2s ease;
 
-.candidate-btn:hover {
-  transform: translateY(-2px);
-  border-color: #60a5fa;
-  box-shadow: 0 12px 22px rgba(37, 99, 235, 0.12);
-}
-
-@keyframes handwritingPanelIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  &:hover {
+    background: #dbeafe;
+    transform: translateY(-1px);
   }
 }
 
-.handwriting-modal::-webkit-scrollbar {
-  width: 8px;
+.candidate-placeholder {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  font-size: 13px;
+  color: #9ca3af;
+  line-height: 1.5;
 }
 
-.handwriting-modal::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 999px;
+/* PHẦN VIẾT Ở DƯỚI */
+.canvas-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.canvas-shell {
+  border: 2px dashed #cbd5e1;
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 12px;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.handwriting-canvas {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: 170px;
+  background: #ffffff;
+  border-radius: 14px;
+  touch-action: none;
+  cursor: crosshair;
+  margin: 0 auto;
+}
+
+.handwriting-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.secondary-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+    background: #f3f4f6;
+  }
 }
 
 @media (max-width: 768px) {
   .handwriting-overlay {
-    align-items: flex-end;
-    justify-content: center;
     padding: 10px;
   }
 
   .handwriting-modal {
-    width: 100%;
-    max-height: min(78vh, 720px);
-    border-radius: 22px 22px 18px 18px;
+    max-height: 95vh;
+    border-radius: 16px;
   }
 
   .handwriting-header {
-    padding: 16px 16px 12px;
+    padding: 16px;
+
+    .header-copy {
+      h3 {
+        font-size: 18px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
   }
 
   .handwriting-body {
-    padding: 14px 16px 16px;
+    padding: 16px;
+    gap: 14px;
   }
 
   .handwriting-canvas {
     height: 220px;
   }
 
-  .header-copy h3 {
-    font-size: 1rem;
-  }
-
-  .header-copy p {
-    font-size: 0.86rem;
+  .candidate-btn {
+    font-size: 16px;
+    padding: 9px 12px;
   }
 }
 
-@media (max-width: 480px) {
-  .handwriting-overlay {
-    padding: 8px;
+@media (max-width: 768px) {
+  .handwriting-modal {
+    max-height: 68vh;
+    border-radius: 16px 16px 10px 10px;
   }
 
-  .handwriting-modal {
-    width: 100%;
-    max-height: 82vh;
+  .handwriting-body {
+    padding: 12px 14px 14px;
+    gap: 10px;
   }
 
   .handwriting-canvas {
-    height: 200px;
+    height: 140px;
   }
 
-  .candidate-btn {
-    min-width: 44px;
-    padding: 9px 12px;
-    font-size: 1rem;
+  .handwriting-candidates {
+    min-height: 56px;
   }
 }
